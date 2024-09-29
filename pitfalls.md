@@ -5,3 +5,6 @@
 ### Android 
 - install java 17: `brew install openjdk@17`
 - add `export JAVA_HOME=$(/usr/libexec/java_home -v 17)` and `export PATH=$JAVA_HOME/bin:$PATH` to .zshrc
+
+### Cannot find Maui: Build
+- disable maui xaml hot reload(c# hot reload is fine)
