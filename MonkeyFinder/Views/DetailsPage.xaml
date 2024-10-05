@@ -11,18 +11,6 @@
                   RowDefinitions="160, auto">
                 <BoxView BackgroundColor="{StaticResource Primary}"
                          Grid.ColumnSpan="3"/>
-
-                <VerticalStackLayout
-                    Spacing="8"
-                    Grid.ColumnSpan="3"
-                    Grid.Row="1">
-                    <Label Text="{Binding Monkey.Details}"
-                           Style="{StaticResource MediumLabel}"/>
-                    <Label Text="{Binding Monkey.Location, StringFormat='Location: {0}'}"
-                           Style="{StaticResource SmallLabel}"/>
-                    <Label Text="{Binding Monkey.Population, StringFormat='Population: {0}'}"
-                           Style="{StaticResource SmallLabel}"/>
-                </VerticalStackLayout>
                 <Frame Grid.RowSpan="2"
                        Padding="0"
                        Grid.Column="1"
@@ -36,6 +24,24 @@
                            Aspect="AspectFill"/>
                 </Frame>
             </Grid>
+            <Button Text="Show on map"
+                    Command="{Binding OpenMapCommand}"
+                    HorizontalOptions="Center"
+                    WidthRequest="200"
+                    Margin="8"
+                    Style="{StaticResource ButtonOutline}"/>
+            <VerticalStackLayout
+                Padding="16"
+                Spacing="8"
+                Grid.ColumnSpan="3"
+                Grid.Row="1">
+                <Label Text="{Binding Monkey.Details}"
+                       Style="{StaticResource MediumLabel}"/>
+                <Label Text="{Binding Monkey.Location, StringFormat='Location: {0}'}"
+                       Style="{StaticResource SmallLabel}"/>
+                <Label Text="{Binding Monkey.Population, StringFormat='Population: {0}'}"
+                       Style="{StaticResource SmallLabel}"/>
+            </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
