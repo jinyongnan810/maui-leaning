@@ -34,6 +34,12 @@
                         <Frame HeightRequest="128"
                                Padding="0"
                                Style="{StaticResource CardView}">
+                            <Frame.GestureRecognizers>
+                                <!-- GoToMonkeyDetailCommand does not exists in the target binding, which is Monkey model, -->
+                                <!-- So source is need to be specified. -->
+                                <TapGestureRecognizer CommandParameter="{Binding .}"
+                                                      Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:MonkeysViewModel}}, Path=GoToMonkeyDetailCommand}"/>
+                            </Frame.GestureRecognizers>
                             <Grid Padding="0"
                                   ColumnDefinitions="128,auto"
                                   ColumnSpacing="12">
