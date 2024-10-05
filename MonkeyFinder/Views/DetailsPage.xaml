@@ -5,10 +5,36 @@
              xmlns:viewmodels="clr-namespace:MonkeyFinder.ViewModels"
              x:DataType="viewmodels:MonkeyDetailsViewModel"
              Title="{Binding Monkey.Name}">
-    <VerticalStackLayout>
-        <Label
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"/>
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout>
+            <Grid ColumnDefinitions="*, auto, *"
+                  RowDefinitions="160, auto">
+                <BoxView BackgroundColor="{StaticResource Primary}"
+                         Grid.ColumnSpan="3"/>
+                <Frame Grid.RowSpan="2"
+                       Padding="0"
+                       Grid.Column="1"
+                       HeightRequest="160"
+                       WidthRequest="160"
+                       CornerRadius="80"
+                       Margin="0,80,0,0"
+                       IsClippedToBounds="True"
+                       BorderColor="WhiteSmoke">
+                    <Image Source="{Binding Monkey.Image}"
+                           Aspect="AspectFill"/>
+                </Frame>
+                <VerticalStackLayout Padding="12"
+                                     Spacing="8"
+                                     Grid.Row="2">
+                    <Label Text="{Binding Monkey.Details, StringFormat='Location: {0}'}"
+                           Style="{StaticResource MediumLabel}"/>
+                    <Label Text="{Binding Monkey.Location}"
+                           Style="{StaticResource SmallLabel}"/>
+                    <Label Text="{Binding Monkey.Population, StringFormat='Population: {0}'}"
+                           Style="{StaticResource SmallLabel}"/>
+
+                </VerticalStackLayout>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
