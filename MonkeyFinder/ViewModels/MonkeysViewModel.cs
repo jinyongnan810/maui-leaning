@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MonkeyFinder.Services;
 
@@ -9,7 +10,9 @@ public partial class MonkeysViewModel : BaseViewModel
     private MonkeyService monkeyService;
     private IConnectivity connectivity;
     private IGeolocation geolocation;
-    public ObservableCollection<Monkey> Monkeys { get; } = [];
+
+    [ObservableProperty]
+    public List<Monkey>? monkeys;
 
     // public Command LoadMonkeysCommand { get; }
     public MonkeysViewModel(MonkeyService monkeyService, IConnectivity connectivity, IGeolocation geolocation)
@@ -39,12 +42,16 @@ public partial class MonkeysViewModel : BaseViewModel
             Debug.Print("Monkeys loaded.");
             if (monkeys != null)
             {
-                if (monkeys.Count != 0)
-                    Monkeys.Clear();
-                foreach (var monkey in monkeys)
+                if (Monkeys is null)
                 {
-                    Monkeys.Add(monkey);
+                    Monkeys = new List<Monkey>(monkeys);
                 }
+                else if (monkeys.Count != 0)
+                {
+                    Monkeys?.Clear();
+                    Monkeys?.AddRange(monkeys);
+                }
+
             }
         }
         catch (TaskCanceledException ex)
@@ -74,7 +81,7 @@ public partial class MonkeysViewModel : BaseViewModel
     [RelayCommand]
     async Task GetClosestMonkey()
     {
-        if (IsBusy || this.Monkeys.Count == 0)
+        if (IsBusy || this.Monkeys?.Count == 0)
             return;
         try
         {
@@ -89,7 +96,7 @@ public partial class MonkeysViewModel : BaseViewModel
             location ??= await geolocation.GetLocationAsync(new GeolocationRequest(GeolocationAccuracy.Medium, timeout: TimeSpan.FromSeconds(30)));
             if (location == null)
                 return;
-            var closest = Monkeys.OrderBy(m => location.CalculateDistance(m.Latitude, m.Longitude, DistanceUnits.Kilometers)).FirstOrDefault();
+            var closest = Monkeys?.OrderBy(m => location.CalculateDistance(m.Latitude, m.Longitude, DistanceUnits.Kilometers)).FirstOrDefault();
             if (closest is null) return;
             Debug.Print("Getting closest monkey finished.");
             await Shell.Current.DisplayAlert("Info", $"{closest.Name} at {closest.Location}", "OK");
