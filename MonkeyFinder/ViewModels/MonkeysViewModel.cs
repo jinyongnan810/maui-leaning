@@ -83,6 +83,19 @@ public partial class MonkeysViewModel : BaseViewModel
     {
         if (IsBusy || this.Monkeys?.Count == 0)
             return;
+
+        var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
+
+        if (status != PermissionStatus.Granted)
+        {
+            var permissionStatus = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+            if (permissionStatus != PermissionStatus.Granted)
+            {
+                await Shell.Current.DisplayAlert("Location Permission Denied", "Unable to get location.", "OK");
+                return;
+            }
+        }
+
         try
         {
             if (connectivity.NetworkAccess != NetworkAccess.Internet)
