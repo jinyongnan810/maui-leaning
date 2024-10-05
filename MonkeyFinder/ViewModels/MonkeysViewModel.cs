@@ -7,13 +7,15 @@ namespace MonkeyFinder.ViewModels;
 public partial class MonkeysViewModel : BaseViewModel
 {
     private MonkeyService monkeyService;
+    private IConnectivity connectivity;
     public ObservableCollection<Monkey> Monkeys { get; } = [];
 
     // public Command LoadMonkeysCommand { get; }
-    public MonkeysViewModel(MonkeyService monkeyService)
+    public MonkeysViewModel(MonkeyService monkeyService, IConnectivity connectivity)
     {
         Title = "Monkeys Finder";
         this.monkeyService = monkeyService;
+        this.connectivity = connectivity;
         // this.LoadMonkeysCommand = new Command(async()=>await LoadMonkeys());
     }
 
@@ -24,6 +26,11 @@ public partial class MonkeysViewModel : BaseViewModel
             return;
         try
         {
+            if (connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                await Shell.Current.DisplayAlert("No Internet", "No internet connection available", "OK");
+                return;
+            }
             IsBusy = true;
             Debug.Print("Loading Monkeys.");
             var monkeys = await monkeyService.GetMonkeys();

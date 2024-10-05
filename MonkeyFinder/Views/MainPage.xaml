@@ -43,6 +43,7 @@
                             <Grid Padding="0"
                                   ColumnDefinitions="128,auto"
                                   ColumnSpacing="12">
+                                <!-- Getting TaskCanceledException, no specific solution yet -->
                                 <Image Source="{Binding Image}"
                                        Aspect="AspectFill"
                                        HeightRequest="128"
