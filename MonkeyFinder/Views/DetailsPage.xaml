@@ -11,6 +11,18 @@
                   RowDefinitions="160, auto">
                 <BoxView BackgroundColor="{StaticResource Primary}"
                          Grid.ColumnSpan="3"/>
+
+                <VerticalStackLayout
+                    Spacing="8"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="1">
+                    <Label Text="{Binding Monkey.Details}"
+                           Style="{StaticResource MediumLabel}"/>
+                    <Label Text="{Binding Monkey.Location, StringFormat='Location: {0}'}"
+                           Style="{StaticResource SmallLabel}"/>
+                    <Label Text="{Binding Monkey.Population, StringFormat='Population: {0}'}"
+                           Style="{StaticResource SmallLabel}"/>
+                </VerticalStackLayout>
                 <Frame Grid.RowSpan="2"
                        Padding="0"
                        Grid.Column="1"
@@ -23,17 +35,6 @@
                     <Image Source="{Binding Monkey.Image}"
                            Aspect="AspectFill"/>
                 </Frame>
-                <VerticalStackLayout Padding="12"
-                                     Spacing="8"
-                                     Grid.Row="2">
-                    <Label Text="{Binding Monkey.Details, StringFormat='Location: {0}'}"
-                           Style="{StaticResource MediumLabel}"/>
-                    <Label Text="{Binding Monkey.Location}"
-                           Style="{StaticResource SmallLabel}"/>
-                    <Label Text="{Binding Monkey.Population, StringFormat='Population: {0}'}"
-                           Style="{StaticResource SmallLabel}"/>
-
-                </VerticalStackLayout>
             </Grid>
         </VerticalStackLayout>
     </ScrollView>
