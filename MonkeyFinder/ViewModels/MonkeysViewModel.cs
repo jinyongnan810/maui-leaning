@@ -14,6 +14,9 @@ public partial class MonkeysViewModel : BaseViewModel
     [ObservableProperty]
     public List<Monkey>? monkeys;
 
+    [ObservableProperty]
+    public bool isRefreshing;
+
     // public Command LoadMonkeysCommand { get; }
     public MonkeysViewModel(MonkeyService monkeyService, IConnectivity connectivity, IGeolocation geolocation)
     {
@@ -66,6 +69,7 @@ public partial class MonkeysViewModel : BaseViewModel
         finally
         {
             IsBusy = false;
+            IsRefreshing = false;
         }
 
     }

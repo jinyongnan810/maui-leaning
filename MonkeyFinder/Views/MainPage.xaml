@@ -11,10 +11,12 @@
     <Grid ColumnDefinitions="*,*"
           ColumnSpacing="8"
           RowDefinitions="*,auto">
-        <CollectionView ItemsSource="{Binding Monkeys}"
-                        SelectionMode="None"
-                        Grid.ColumnSpan="2">
-            <!-- <CollectionView.ItemsSource>
+        <RefreshView Grid.ColumnSpan="2"
+                Command="{Binding LoadMonkeysCommand}"
+                IsRefreshing="{Binding IsRefreshing}">
+            <CollectionView ItemsSource="{Binding Monkeys}"
+                            SelectionMode="None">
+                <!-- <CollectionView.ItemsSource>
                 <x:Array Type="{x:Type models:Monkey}">
                     <models:Monkey Name="Baboon"
                                    Location="Africa"
@@ -30,41 +32,42 @@
                                    Image="https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/bluemonkey.jpg"/>
                 </x:Array>
             </CollectionView.ItemsSource> -->
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:Monkey">
-                    <Grid Padding="10">
-                        <Frame HeightRequest="128"
-                               Padding="0"
-                               Style="{StaticResource CardView}">
-                            <Frame.GestureRecognizers>
-                                <!-- GoToMonkeyDetailCommand does not exists in the target binding, which is Monkey model, -->
-                                <!-- So source is need to be specified. -->
-                                <TapGestureRecognizer CommandParameter="{Binding .}"
-                                                      Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:MonkeysViewModel}}, Path=GoToMonkeyDetailCommand}"/>
-                            </Frame.GestureRecognizers>
-                            <Grid Padding="0"
-                                  ColumnDefinitions="128,auto"
-                                  ColumnSpacing="12">
-                                <!-- Getting TaskCanceledException, no specific solution yet -->
-                                <Image Source="{Binding Image}"
-                                       Aspect="AspectFill"
-                                       HeightRequest="128"
-                                       WidthRequest="128"
-                                       Grid.Column="0"/>
-                                <VerticalStackLayout Spacing="8"
-                                                     Grid.Column="1">
-                                    <Label Text="{Binding Name}"
-                                           Style="{StaticResource LargeLabel}"/>
-                                    <Label Text="{Binding Location}"
-                                           Style="{StaticResource MediumLabel}"/>
-                                </VerticalStackLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Monkey">
+                        <Grid Padding="10">
+                            <Frame HeightRequest="128"
+                                   Padding="0"
+                                   Style="{StaticResource CardView}">
+                                <Frame.GestureRecognizers>
+                                    <!-- GoToMonkeyDetailCommand does not exists in the target binding, which is Monkey model, -->
+                                    <!-- So source is need to be specified. -->
+                                    <TapGestureRecognizer CommandParameter="{Binding .}"
+                                                          Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:MonkeysViewModel}}, Path=GoToMonkeyDetailCommand}"/>
+                                </Frame.GestureRecognizers>
+                                <Grid Padding="0"
+                                      ColumnDefinitions="128,auto"
+                                      ColumnSpacing="12">
+                                    <!-- Getting TaskCanceledException, no specific solution yet -->
+                                    <Image Source="{Binding Image}"
+                                           Aspect="AspectFill"
+                                           HeightRequest="128"
+                                           WidthRequest="128"
+                                           Grid.Column="0"/>
+                                    <VerticalStackLayout Spacing="8"
+                                                         Grid.Column="1">
+                                        <Label Text="{Binding Name}"
+                                               Style="{StaticResource LargeLabel}"/>
+                                        <Label Text="{Binding Location}"
+                                               Style="{StaticResource MediumLabel}"/>
+                                    </VerticalStackLayout>
 
-                            </Grid>
-                        </Frame>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
         <Button Style="{StaticResource ButtonOutline}"
                 Grid.Row="1"
                 Grid.Column="0"
