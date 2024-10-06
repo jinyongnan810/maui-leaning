@@ -12,8 +12,8 @@
           ColumnSpacing="8"
           RowDefinitions="*,auto">
         <RefreshView Grid.ColumnSpan="2"
-                Command="{Binding LoadMonkeysCommand}"
-                IsRefreshing="{Binding IsRefreshing}">
+                     Command="{Binding LoadMonkeysCommand}"
+                     IsRefreshing="{Binding IsRefreshing}">
             <CollectionView ItemsSource="{Binding Monkeys}"
                             SelectionMode="None">
                 <!-- <CollectionView.ItemsSource>
@@ -32,6 +32,23 @@
                                    Image="https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/bluemonkey.jpg"/>
                 </x:Array>
             </CollectionView.ItemsSource> -->
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                     Span="{OnIdiom Default=1,Desktop=3}"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.EmptyView>
+                    <StackLayout WidthRequest="200"
+                                 HeightRequest="200"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center">
+                        <Image Source="nodata.png"
+                               Aspect="AspectFill"
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand"
+                               WidthRequest="200"
+                                HeightRequest="200"/>
+                    </StackLayout>
+                </CollectionView.EmptyView>
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:Monkey">
                         <Grid Padding="10">
@@ -56,9 +73,11 @@
                                     <VerticalStackLayout Spacing="8"
                                                          Grid.Column="1">
                                         <Label Text="{Binding Name}"
-                                               Style="{StaticResource LargeLabel}"/>
+                                               Style="{StaticResource LargeLabel}"
+                                               LineBreakMode="MiddleTruncation"/>
                                         <Label Text="{Binding Location}"
-                                               Style="{StaticResource MediumLabel}"/>
+                                               Style="{StaticResource MediumLabel}"
+                                               LineBreakMode="MiddleTruncation"/>
                                     </VerticalStackLayout>
 
                                 </Grid>
