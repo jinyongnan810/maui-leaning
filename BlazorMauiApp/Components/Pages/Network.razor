@@ -1,0 +1,16 @@
+﻿@page "/network"
+<h1>Network</h1>
+
+<button class="btn btn-primary" @onclick="CheckInternet">Click me</button>
+
+@code {
+    private async void CheckInternet()
+    {
+        var hasInternet = Connectivity.Current.NetworkAccess == NetworkAccess.Internet;
+        var internetType = Connectivity.ConnectionProfiles.FirstOrDefault();
+        if (Application.Current?.MainPage != null)
+        {
+            await Application.Current.MainPage.DisplayAlert("Network", $"Has internet: {hasInternet}\nInternet type: {internetType}", "OK");
+        }
+    }
+}
