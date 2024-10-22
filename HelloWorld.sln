@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonkeyFinder", "MonkeyFinde
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorMauiApp", "BlazorMauiApp\BlazorMauiApp.csproj", "{79AB9BBC-96FA-403E-8A3B-918691BB4AEA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp", "BlazorApp\BlazorApp.csproj", "{606A2C3B-9B6F-4230-B502-5005A78A4306}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{79AB9BBC-96FA-403E-8A3B-918691BB4AEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79AB9BBC-96FA-403E-8A3B-918691BB4AEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79AB9BBC-96FA-403E-8A3B-918691BB4AEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{606A2C3B-9B6F-4230-B502-5005A78A4306}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{606A2C3B-9B6F-4230-B502-5005A78A4306}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{606A2C3B-9B6F-4230-B502-5005A78A4306}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{606A2C3B-9B6F-4230-B502-5005A78A4306}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
