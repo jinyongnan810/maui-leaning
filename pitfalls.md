@@ -8,3 +8,10 @@
 
 ### Cannot find Maui: Build
 - disable maui xaml hot reload(c# hot reload is fine)
+
+### When everything errors
+```bash
+rm -rf bin obj
+dotnet restore
+dotnet build
+```
