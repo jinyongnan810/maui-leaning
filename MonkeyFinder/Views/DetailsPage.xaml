@@ -4,9 +4,12 @@
              x:Class="MonkeyFinder.Views.DetailsPage"
              xmlns:viewmodels="clr-namespace:MonkeyFinder.ViewModels"
              x:DataType="viewmodels:MonkeyDetailsViewModel"
-             Title="{Binding Monkey.Name}">
+             Title="{Binding Monkey.Name}"
+             HideSoftInputOnTapped="True">
     <ScrollView>
         <VerticalStackLayout>
+            <Entry Placeholder="Enter some text"
+                   Text=""/>
             <Grid ColumnDefinitions="*, auto, *"
                   RowDefinitions="160, auto">
                 <BoxView BackgroundColor="{StaticResource Primary}"
@@ -35,6 +38,32 @@
                 Spacing="8"
                 Grid.ColumnSpan="3"
                 Grid.Row="1">
+                <Label Text="{Binding Monkey.Details}"
+                       Style="{StaticResource MediumLabel}"/>
+                <Label Text="{Binding Monkey.Location, StringFormat='Location: {0}'}"
+                       Style="{StaticResource SmallLabel}"/>
+                <Label Text="{Binding Monkey.Population, StringFormat='Population: {0}'}"
+                       Style="{StaticResource SmallLabel}"/>
+                <Label Text="{Binding Monkey.Details}"
+                       Style="{StaticResource MediumLabel}"/>
+                <Label Text="{Binding Monkey.Location, StringFormat='Location: {0}'}"
+                       Style="{StaticResource SmallLabel}"/>
+                <Label Text="{Binding Monkey.Population, StringFormat='Population: {0}'}"
+                       Style="{StaticResource SmallLabel}"/>
+                <Label Text="{Binding Monkey.Details}"
+                       Style="{StaticResource MediumLabel}"/>
+                <Label Text="{Binding Monkey.Location, StringFormat='Location: {0}'}"
+                       Style="{StaticResource SmallLabel}"/>
+                <Label Text="{Binding Monkey.Population, StringFormat='Population: {0}'}"
+                       Style="{StaticResource SmallLabel}"/>
+                <Label Text="{Binding Monkey.Details}"
+                       Style="{StaticResource MediumLabel}"/>
+                <Label Text="{Binding Monkey.Location, StringFormat='Location: {0}'}"
+                       Style="{StaticResource SmallLabel}"/>
+                <Label Text="{Binding Monkey.Population, StringFormat='Population: {0}'}"
+                       Style="{StaticResource SmallLabel}"/>
+                <Entry Placeholder="Enter some text2"
+                       Text=""/>
                 <Label Text="{Binding Monkey.Details}"
                        Style="{StaticResource MediumLabel}"/>
                 <Label Text="{Binding Monkey.Location, StringFormat='Location: {0}'}"
